@@ -39,7 +39,7 @@ Feature Name Type Description type Categorical The method of transaction (CASH_O
   
   Install the necessary dependencies using pip:
   
-** Bash**__
+_Bash_
 
    pip install streamlit, pandas, numpy, joblib, scikit-learn, matplotlib, seaborn
    
