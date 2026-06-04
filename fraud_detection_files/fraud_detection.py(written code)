@@ -1,0 +1,40 @@
+import streamlit as st
+import pandas as pd
+import joblib 
+
+model=joblib.load("fraud_detection_pipeline.pkl")
+
+st.title("Fraud Detection Prediction App")
+
+st.markdown("Please enter the details of the transaction and use the predict button.")
+
+st.divider() # for better look
+
+transaction_type = st.selectbox("Transaction Type", ["CASH_OUT", "PAYMENT", "CASH_IN", "TRANSFER", "DEBIT"])
+amount = st.number_input("Amount", min_value=0.0, value =1000.0)#we are taking float value
+oldbalanceOrg = st.number_input("Old Balance Origin(Sender)", min_value=0.0, value=10000.0)
+newbalanceOrig = st.number_input("New Balance Origin(Sender)", min_value=0.0, value=9000.0)
+oldbalanceDest = st.number_input("Old Balance Destination(Receiver)", min_value=0.0, value=0.0)
+newbalanceDest = st.number_input("New Balance Destination(Receiver)", min_value=0.0, value=0.0)
+
+if st.button("Predict"):
+    input_data = pd.DataFrame([{
+        "type": transaction_type,
+        "amount": amount,
+        "oldbalanceOrg": oldbalanceOrg,
+        "newbalanceOrig": newbalanceOrig,
+        "oldbalanceDest": oldbalanceDest,
+        "newbalanceDest": newbalanceDest
+    }]) # dictionary inside a list 
+    #dataframe is created with the input data and the column names are same as the features used in the model
+
+
+    prediction = model.predict(input_data)[0] # we are taking the first element of the prediction array since it returns an array
+
+    st.subheader(f"Prediction:'{int(prediction)}'")
+
+    if prediction == 1:
+        st.error("This transaction is predicted to be fraudulent.")
+    else:
+        st.success("This transaction is predicted to be legitimate.")
+
