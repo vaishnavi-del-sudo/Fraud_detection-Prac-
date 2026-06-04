@@ -44,6 +44,7 @@ Feature Name Type Description type Categorical The method of transaction (CASH_O
 **3. Running the Web App**__
 
 Make sure your serialized model (fraud_detection_pipeline.pkl) is in the same directory as fraud_detection.py.
+
 Run the app locally via:
 
 _Bash_
@@ -53,10 +54,15 @@ streamlit run fraud_detection.py
 
 Once launched, 
 the Streamlit app offers an intuitive interface:
+
 Input Fields: Select the transaction type from a dropdown menu and enter financial values (amounts and balances).
+
 Prediction Core: Upon clicking the "Predict" button, the inputs are converted into a structured pandas.DataFrame matching the model's exact signature format.
+
 Real-time Feedback:
+
 🟢 If legitimate, a green success banner highlights a safe transaction.
+
 🔴 If fraudulent, a red error banner warns the operator immediately.
 
 Note: The underlying execution fetches the primary element of the array return object (model.predict(input_data)[0]) ensuring rapid single-vector inference.
