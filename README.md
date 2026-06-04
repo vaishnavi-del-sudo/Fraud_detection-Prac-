@@ -1,9 +1,11 @@
 **Financial Fraud Detection System**
 
 An end-to-end Machine Learning project designed to detect fraudulent financial transactions. This project includes data exploration and analysis on highly imbalanced transaction data, model pipeline generation, and an interactive Streamlit web application for real-time predictions.
+
 **📌 Project Overview**
 
 Financial fraud costs institutions and individuals billions of dollars annually. This project utilizes an anonymized financial transaction dataset to flag suspicious activities based on transaction types, amounts, and account balance variations before and after a transaction occurs.
+
 **The repository features:**
 
 **analysis_model.ipynb**__: Data ingestion, structure verification, and exploratory data analysis (EDA).
